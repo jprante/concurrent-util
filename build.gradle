@@ -1,0 +1,36 @@
+plugins {
+    id "de.marcphilipp.nexus-publish" version "0.4.0"
+    id "io.codearte.nexus-staging" version "0.21.1"
+    id "org.xbib.gradle.plugin.asciidoctor" version "1.6.0.1"
+}
+
+wrapper {
+    gradleVersion = "${rootProject.property('gradle.wrapper.version')}"
+    distributionType = Wrapper.DistributionType.ALL
+}
+
+ext {
+    user = 'jprante'
+    name = 'concurrent-util'
+    description = 'Concurrency utilities for Java'
+    url = 'https://github.com/jprante/concurrent-util'
+    scmUrl = 'https://github.com/jprante/concurrent-util'
+    scmConnection = 'scm:git:git://github.com/jprante/concurrent-util.git'
+    scmDeveloperConnection = 'scm:git:git://github.com/jprante/concurrent-util.git'
+    inceptionYear = '2020'
+    organizationName = 'xbib'
+    organizationUrl = 'http://xbib.org'
+    licenseName = 'The Apache License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    issueManagementSystem = 'Github'
+    issueManagementUrl = ext.scmUrl + '/issues'
+}
+
+apply plugin: 'java-library'
+
+subprojects {
+    apply from: rootProject.file('gradle/ide/idea.gradle')
+    apply from: rootProject.file('gradle/compile/java.gradle')
+    apply from: rootProject.file('gradle/test/junit5.gradle')
+    apply from: rootProject.file('gradle/publishing/publication.gradle')
+}
