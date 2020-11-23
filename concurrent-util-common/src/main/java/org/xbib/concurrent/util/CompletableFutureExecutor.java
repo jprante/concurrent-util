@@ -18,6 +18,10 @@ public class CompletableFutureExecutor extends ThreadPoolExecutor {
         super(corePoolSize, maximumPoolSize, keepAliveTime, unit, new ArrayBlockingQueue<>(256));
     }
 
+    public CompletableFutureExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit, int queueLength) {
+        super(corePoolSize, maximumPoolSize, keepAliveTime, unit, new ArrayBlockingQueue<>(queueLength));
+    }
+
     public CompletableFutureExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit,
                                      BlockingQueue<Runnable> workQueue) {
         super(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue);
